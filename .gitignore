@@ -1,0 +1,6 @@
+### dotenv ###
+.env
+
+### docker ###
+volumes/
+!volumes/.gitkeep
