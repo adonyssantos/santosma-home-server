@@ -1,9 +1,8 @@
 # This scripts sets up the backups for all the volumes in the system
-# The backups are compress, encrypted
-# Also, if the day is Monday or upload-to-mega is true, the backup is uploaded to Mega.nz
+# The backups are compress, encrypted and saved in Mega.nz
 
+mega_forlder_backups=/Archive/SantosmaServer/Backups
 timestamp=$(date +"%Y%m%d%H%M%S")
-upload_to_mega=$1
 
 # Create a temporary directory to store the backup
 rm -rf ../.temp
@@ -19,7 +18,5 @@ gpg --output ../backups/$timestamp.tar.gz.gpg --symmetric --cipher-algo AES256 -
 # Clean up the temporary directory
 rm -rf ../.temp
 
-# TODO: Upload the backup to Mega.nz on Mondays or if upload_to_mega is true
-if [ $(date +%u) -eq 1 ] || [ "$upload_to_mega" == "true" ]; then
-    # TODO: Upload the backup to Mega.nz
-fi
+# Upload the backup to Mega.nz
+mega-put -c ../backups/$timestamp.tar.gz.gpg $mega_forlder_backups/$timestamp.tar.gz.gpg
