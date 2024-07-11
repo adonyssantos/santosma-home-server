@@ -1,6 +1,10 @@
-### dotenv ###
 .env
+backups-encryption.key
 
-### docker ###
-volumes/
+volumes/*
 !volumes/.gitkeep
+
+backups/*
+!backups/.gitkeep
+
+.temp/
