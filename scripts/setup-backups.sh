@@ -20,3 +20,6 @@ fi
 
 # Add the cron job to run the backup script
 # TODO: Create the cron job
+
+# Add the cron job to run the cleanup script'
+# TODO: Create the cron job
