@@ -9,6 +9,15 @@ This system is using the following credentials:
 - `backups-encryption.key`: The encryption key for the backups. You can generate a new key using the `openssl rand -base64 256 > backups-encryption.key` command. Make sure to keep this key secure and do not lose it, as it is required to decrypt the backups.
 - `.env`: The environment file that contains the environment variables for the services. This file is not included in the repository for security reasons. You can create this file by copying the `.env.example` file and updating the values as needed.
 
+## Requirements
+
+The following software is required to run the server:
+
+- [Fedora Server](https://fedoraproject.org/en/server/download/)
+- [Docker and Docker Compose](https://docs.docker.com/engine/install/fedora/)
+- [Mega CMD](https://mega.io/cmd#download)
+- 
+
 ## Services
 
 The server is running the following services:
