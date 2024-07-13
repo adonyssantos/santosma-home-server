@@ -1,5 +1,5 @@
 # This script will restore the backups 
-
+# @arg1: The path to the backup file to restore
 backup_file=$1
 
 # Create temporary directory

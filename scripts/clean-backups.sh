@@ -1,6 +1,7 @@
 # This script will remove the backups older than 30 days in the ../backups directory
-current_timestamp=$(date +"%Y%m%d%H%M%S")
+# @arg1: The base scripts directory
 BASE_DIR=${1:-$(pwd)}
+current_timestamp=$(date +"%Y%m%d%H%M%S")
 
 cd $BASE_DIR
 
@@ -11,5 +12,6 @@ for backup in ../backups/*.tar.gz.gpg; do
 
     if [ $difference_in_days -gt 30 ]; then
         rm $backup
+        echo "Backup $backup removed."
     fi
 done
