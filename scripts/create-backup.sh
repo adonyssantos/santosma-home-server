@@ -2,7 +2,10 @@
 # The backups are compress, encrypted and saved in Mega.nz
 
 mega_forlder_backups=/Archive/SantosmaServer/Backups
+BASE_DIR=${1:-$(pwd)}
 timestamp=$(date +"%Y%m%d%H%M%S")
+
+cd $BASE_DIR
 
 # Create a temporary directory to store the backup
 rm -rf ../.temp

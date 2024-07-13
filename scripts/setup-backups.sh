@@ -6,13 +6,9 @@ UTC=-4 # America/Santo_Domingo
 HOUR=2 # 2 AM on America/Santo_Domingo
 MEGA_EMAIL=$1
 MEGA_PASSWORD=$2
-
-# Convert from the UTC variable to the cron format
-if [ $UTC -gt 0 ]; then
-  HOUR=$(($HOUR + $UTC))
-elif [ $UTC -lt 0 ]; then
-  HOUR=$(($HOUR - $UTC))
-fi
+BASE_DIR="$(pwd)"
+CREATE_BACKUP_SCRIPT="bash $BASE_DIR/create-backup.sh $BASE_DIR"
+ERROR_LOG_FILE="~$BASE_DIR/../logs/setup-backups.error.log"
 
 if ! command -v megacli >/dev/null 2>&1; then
   echo "Error: megacli command not found. Please make sure MegaCLI is installed."
@@ -36,8 +32,21 @@ fi
 # or
 # mega-cmd; login $MEGA_EMAIL $MEGA_PASSWORD
 
-# Add the cron job to run the backup script
-# TODO: Create the cron job
+# Check if the cron job already exists
+if crontab -l | grep -q "$CREATE_BACKUP_SCRIPT"; then
+  echo "Cron job already exists."
+  exit 0
+fi
 
-# Add the cron job to run the cleanup script'
-# TODO: Create the cron job
+# Convert from the UTC variable to the cron format
+if [ $UTC -gt 0 ]; then
+  HOUR=$(($HOUR + $UTC))
+elif [ $UTC -lt 0 ]; then
+  HOUR=$(($HOUR - $UTC))
+fi
+
+# Add the cron job to run the backup script every day at the specified time
+(crontab -l 2>/dev/null; echo "0 $HOUR * * * $CREATE_BACKUP_SCRIPT 2>>$ERROR_LOG_FILE") | crontab -
+
+# Add the cron job to run the cleanup script
+(crontab -l 2>/dev/null; echo "0 $HOUR * * * bash $BASE_DIR/cleanup-backups.sh $BASE_DIR 2>>$ERROR_LOG_FILE") | crontab -

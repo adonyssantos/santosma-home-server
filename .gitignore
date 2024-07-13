@@ -8,3 +8,4 @@ backups/*
 !backups/.gitkeep
 
 .temp/
+logs/
