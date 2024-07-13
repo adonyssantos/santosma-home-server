@@ -10,10 +10,26 @@ services:
     ports:
       - 8080:80
     restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: 0.50
+          memory: 128M
+        reservations:
+          cpus: 0.25
+          memory: 64M
   
   cloudflared:
-    image: cloudflare/cloudflared:latest
+    image: cloudflare/cloudflared:2024.6.1
     command: tunnel --no-autoupdate run --token ${CLOUDFLARE_TUNNEL_TOKEN}
     env_file:
       - .env
     restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: 0.50
+          memory: 128M
+        reservations:
+          cpus: 0.25
+          memory: 64M
