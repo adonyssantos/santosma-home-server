@@ -13,8 +13,8 @@ BASE_DIR="$(pwd)"
 CREATE_BACKUP_SCRIPT="bash $BASE_DIR/create-backup.sh $BASE_DIR"
 ERROR_LOG_FILE="$BASE_DIR/../logs/setup-backups.error.log"
 
-# Check if the megacli command is available
-if ! command -v megacli >/dev/null 2>&1; then
+# Check if the mega-cmd command is available
+if ! command -v mega-cmd >/dev/null 2>&1; then
   echo "Error: megacli command not found. Please make sure Mega.nz is installed."
   exit 1
 fi
