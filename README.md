@@ -22,21 +22,24 @@ The following software is required to run the server:
 
 The server is running the following services:
 
+| Service                     | Container Name | Ports |
+| --------------------------- | -------------- | ----- |
+| [FreshRSS](#freshrss)       | freshrss       | 8000  |
+| [Vaultwarden](#vaultwarden) | vaultwarden    | 8100  |
+| [Cloudflared](#cloudflared) | cloudflared    | N/A   |
+
 ### FreshRSS
 
-FreshRSS is a free, self-hosted RSS feed reader. It is a great way to keep up with your favorite websites and blogs.
+[FreshRSS](https://freshrss.org/) is a free, self-hosted RSS feed reader. It is a great way to keep up with your favorite websites and blogs.
 
-###  Vaultwarden
+### Vaultwarden
 
-Vaultwarden is a free, open-source password manager that is compatible with Bitwarden. It is a great way to store and manage your passwords securely.
+[Vaultwarden](https://vaultwarden.github.io/docs/) is a free, open-source password manager that is compatible with Bitwarden. It is a great way to store and manage your passwords securely.
 
 ### Cloudflared
 
-Cloudflared is a tool that allows you to tunnel traffic through Cloudflare's network. Is used to access to the local server from the internet.
+[Cloudflared](https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/install-and-setup/installation) is a tool that allows you to tunnel traffic through Cloudflare's network. Is used to access to the local server from the internet.
 
 ## References
 
 - [Fedora](https://docs.fedoraproject.org/en-US/quick-docs/raspberry-pi/)
-- [FreshRSS](https://freshrss.org/)
-- [Vaultwarden](https://vaultwarden.github.io/docs/)
-- [Cloudflared](https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/install-and-setup/installation)
