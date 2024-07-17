@@ -13,10 +13,11 @@ This system is using the following credentials:
 
 The following software is required to run the server:
 
-- [Ubuntu Server](https://ubuntu.com/download/raspberry-pi)
-- [Docker and Docker Compose](https://docs.docker.com/engine/install/)
-- [Mega CMD](https://mega.io/cmd#download)
-- 
+- [Install Ubuntu Server on the Raspberry PI](https://ubuntu.com/download/raspberry-pi)
+- [Setup a static IP address and SSH access](./docs/ubuntu-server-network-config.md)
+- [Install Docker](https://docs.docker.com/engine/install/)
+- [Install Mega CMD](https://mega.io/cmd#download)
+- [Install Crontab](https://linuxgenie.net/set-up-use-crontab-ubuntu-linux/)
 
 ## Services
 
