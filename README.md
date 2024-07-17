@@ -1,6 +1,6 @@
 # Santosma Home Server
 
-This is the home server of Santosma. It is a server that runs on a Raspberry Pi 4 and is used for various purposes. The server is running on a Raspberry Pi 4 with 4GB of RAM and a 64GB SD card. The server is running on Fedora Server.
+This is the home server of Santosma. It is a server that runs on a Raspberry Pi 4 and is used for various purposes. The server is running on a Raspberry Pi 4 with 4GB of RAM and a 64GB SD card. The server is running on Ubuntu Server.
 
 ## Credentials
 
@@ -13,8 +13,8 @@ This system is using the following credentials:
 
 The following software is required to run the server:
 
-- [Fedora Server](https://fedoraproject.org/en/server/download/)
-- [Docker and Docker Compose](https://docs.docker.com/engine/install/fedora/)
+- [Ubuntu Server](https://ubuntu.com/download/raspberry-pi)
+- [Docker and Docker Compose](https://docs.docker.com/engine/install/)
 - [Mega CMD](https://mega.io/cmd#download)
 - 
 
@@ -39,7 +39,3 @@ The server is running the following services:
 ### Cloudflared
 
 [Cloudflared](https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/install-and-setup/installation) is a tool that allows you to tunnel traffic through Cloudflare's network. Is used to access to the local server from the internet.
-
-## References
-
-- [Fedora](https://docs.fedoraproject.org/en-US/quick-docs/raspberry-pi/)
