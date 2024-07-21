@@ -18,7 +18,27 @@ services:
         reservations:
           cpus: 0.25
           memory: 64M
-  
+
+  vaultwarden:
+    image: vaultwarden/server:1.31.0
+    environment:
+      - SIGNUPS_ALLOWED=false # Activate this with "true", create an account and then set it back to "false"
+      - INVITATIONS_ALLOWED=true
+      - WEBSOCKET_ENABLED=true
+    volumes:
+      - ./volumes/vaultwarden:/data
+    ports:
+      - "8100:80"
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: 0.50
+          memory: 128M
+        reservations:
+          cpus: 0.25
+          memory: 64M
+
   cloudflared:
     image: cloudflare/cloudflared:2024.6.1
     command: tunnel --no-autoupdate run --token ${CLOUDFLARE_TUNNEL_TOKEN}
