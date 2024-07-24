@@ -1,0 +1,20 @@
+services:
+  uptime-kuma:
+    image: lscr.io/linuxserver/uptime-kuma:1.0.0
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Santo_Domingo
+    volumes:
+      - ./uptime-kuma:/config
+    ports:
+      - 3001:3001
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: 0.50
+          memory: 128M
+        reservations:
+          cpus: 0.25
+          memory: 64M
