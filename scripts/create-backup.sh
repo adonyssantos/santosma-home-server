@@ -1,6 +1,12 @@
 # This scripts sets up the backups for all the volumes in the system
 # The backups are compress, encrypted and saved in Mega.nz
 # @arg1: The base scripts directory
+
+if [ -d "./scripts" ]; then
+  cd scripts
+  echo "Moved to scripts directory"
+fi
+
 mega_forlder_backups=/Archive/SantosmaServer/Backups
 BASE_DIR=${1:-$(pwd)}
 timestamp=$(date +"%Y%m%d%H%M%S")
