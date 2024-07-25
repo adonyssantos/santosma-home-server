@@ -49,5 +49,5 @@ HOUR=$((HOUR % 24))
 # Add the cron job to run the backup script every day at the specified time
 (crontab -l 2>/dev/null; echo "0 $HOUR * * * $CREATE_BACKUP_SCRIPT 2>>$ERROR_LOG_FILE") | crontab -
 
-# Add the cron job to run the cleanup script
-(crontab -l 2>/dev/null; echo "0 $HOUR * * * bash $BASE_DIR/cleanup-backups.sh $BASE_DIR 2>>$ERROR_LOG_FILE") | crontab -
+# Add the cron job to run the clean script
+(crontab -l 2>/dev/null; echo "0 $HOUR * * * bash $BASE_DIR/clean-backups.sh $BASE_DIR 2>>$ERROR_LOG_FILE") | crontab -
