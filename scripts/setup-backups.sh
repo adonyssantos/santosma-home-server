@@ -5,6 +5,11 @@
 # @arg1: Mega.nz email
 # @arg2: Mega.nz password
 
+if [ -d "./scripts" ]; then
+  cd scripts
+  echo "Moved to scripts directory"
+fi
+
 UTC=-4 # America/Santo_Domingo
 HOUR=2 # 2 AM on America/Santo_Domingo
 MEGA_EMAIL=$1

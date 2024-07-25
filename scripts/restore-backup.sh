@@ -2,6 +2,11 @@
 # @arg1: The path to the backup file to restore
 backup_file=$1
 
+if [ -d "./scripts" ]; then
+  cd scripts
+  echo "Moved to scripts directory"
+fi
+
 # Create temporary directory
 rm -rf ../.temp
 mkdir -p ../.temp/restores
