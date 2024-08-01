@@ -1,0 +1,123 @@
+- name: Configure Ubuntu Server
+  hosts: servers
+  become: yes
+
+  tasks:
+    - name: Update and upgrade packages
+      apt:
+        update_cache: yes
+        upgrade: dist
+
+    - name: Set timezone
+      command: timedatectl set-timezone America/Santo_Domingo
+      changed_when: false
+
+    - name: Install UFW
+      apt:
+        name: ufw
+        state: present
+
+    - name: Enable UFW
+      command: ufw enable
+      ignore_errors: yes
+
+    - name: Allow SSH through UFW
+      ufw:
+        rule: allow
+        name: OpenSSH
+        state: enabled
+
+    - name: Allow HTTP through UFW
+      ufw:
+        rule: allow
+        name: 'http'
+        state: enabled
+
+    - name: Install essential packages
+      apt:
+        name:
+          - nano
+          - git
+          - curl
+          - wget
+          - ca-certificates
+        state: present
+
+    - name: Add Docker's official GPG key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Add Docker repository to Apt sources
+      apt_repository:
+        repo: deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu jammy stable
+        state: present
+
+    - name: Install Docker
+      apt:
+        name:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-buildx-plugin
+          - docker-compose-plugin
+        state: present
+
+    - name: Ensure Docker service is running
+      service:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Add user to docker group
+      user:
+        name: "{{ ansible_user }}"
+        groups: docker
+        append: yes
+
+    - name: Run hello-world container
+      docker_container:
+        name: hello-world
+        image: hello-world
+        state: started
+        command: hello-world
+        restart_policy: no
+
+    - name: Install unattended-upgrades
+      apt:
+        name: unattended-upgrades
+        state: present
+
+    - name: Enable automatic updates
+      command: dpkg-reconfigure --priority=low unattended-upgrades
+
+    - name: Install fail2ban
+      apt:
+        name: fail2ban
+        state: present
+
+    - name: Configure fail2ban
+      template:
+        src: fail2ban.local.j2
+        dest: /etc/fail2ban/jail.local
+      notify:
+        - restart fail2ban
+
+    - name: Configure DNS
+      lineinfile:
+        path: /etc/resolv.conf
+        line: "{{ item }}"
+        create: yes
+      with_items:
+        - "nameserver 1.1.1.1"
+        - "nameserver 1.0.0.1"
+        - "nameserver 8.8.8.8"
+
+  handlers:
+    - name: restart fail2ban
+      service:
+        name: fail2ban
+        state: restarted
+
+    - name: restart network
+      command: systemctl restart NetworkManager
