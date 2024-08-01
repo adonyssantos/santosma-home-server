@@ -4,7 +4,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=America/Santo_Domingo
+      - TZ=${TZ}
     volumes:
       - ./volumes/freshrss:/config
     ports:
@@ -42,8 +42,6 @@ services:
   cloudflared:
     image: cloudflare/cloudflared:2024.6.1
     command: tunnel --no-autoupdate run --token ${CLOUDFLARE_TUNNEL_TOKEN}
-    env_file:
-      - .env
     restart: unless-stopped
     deploy:
       resources:
@@ -60,6 +58,8 @@ services:
       dockerfile: backups.dockerfile
       args:
         - MEGA_SESSION=${MEGA_SESSION}
+    environment:
+      - TZ=${TZ}
     volumes:
       - ./backups:/backups
     restart: unless-stopped
