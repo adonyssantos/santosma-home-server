@@ -46,7 +46,7 @@ The server is running the following services:
 
 ## Backups
 
-This services is my own implementation to backup the data from all others services volumes. The backups are encrypted using the `backups-encryption.key` file and uploaded to Mega using the `mega-cmd` tool.
+This service is my own implementation to backup the data from all others services volumes. The backups are encrypted using the `backups-encryption.key` file and uploaded to Mega using the `mega-cmd` tool.
 
 **The backups files are:**
 
