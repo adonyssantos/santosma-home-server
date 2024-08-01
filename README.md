@@ -30,6 +30,7 @@ The server is running the following services:
 | [FreshRSS](#freshrss)       | freshrss       | 8000  |
 | [Vaultwarden](#vaultwarden) | vaultwarden    | 8100  |
 | [Cloudflared](#cloudflared) | cloudflared    | N/A   |
+| [Backups](#backups)         | backups        | N/A   |
 
 ### FreshRSS
 
@@ -42,3 +43,14 @@ The server is running the following services:
 ### Cloudflared
 
 [Cloudflared](https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/install-and-setup/installation) is a tool that allows you to tunnel traffic through Cloudflare's network. Is used to access to the local server from the internet.
+
+## Backups
+
+This services is my own implementation to backup the data from all others services volumes. The backups are encrypted using the `backups-encryption.key` file and uploaded to Mega using the `mega-cmd` tool.
+
+**The backups files are:**
+
+- `backups.dockerfile`: The Dockerfile to build the backups service.
+- `./scripts/create-backup.sh`: The script to create the backups, compress, encrypt and upload to Mega.
+- `./scripts/restore-backup.sh`: The script to download, decrypt, decompress and restore the backups.
+- `./scripts/clean-backups.sh`: The script to clean the backups older than 30 days.

@@ -53,3 +53,21 @@ services:
         reservations:
           cpus: 0.25
           memory: 64M
+
+  backups:
+    build:
+      context: .
+      dockerfile: backups.dockerfile
+      args:
+        - MEGA_SESSION=${MEGA_SESSION}
+    volumes:
+      - ./backups:/backups
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: 0.50
+          memory: 128M
+        reservations:
+          cpus: 0.25
+          memory: 64M
