@@ -29,6 +29,7 @@ The server is running the following services:
 | --------------------------- | -------------- | ----- |
 | [FreshRSS](#freshrss)       | freshrss       | 8000  |
 | [Vaultwarden](#vaultwarden) | vaultwarden    | 8100  |
+| [BudgE](#budge)             | budge          | 8200  |
 | [Cloudflared](#cloudflared) | cloudflared    | N/A   |
 | [Backups](#backups)         | backups        | N/A   |
 
@@ -39,6 +40,10 @@ The server is running the following services:
 ### Vaultwarden
 
 [Vaultwarden](https://vaultwarden.github.io/docs/) is a free, open-source password manager that is compatible with Bitwarden. It is a great way to store and manage your passwords securely.
+
+## BudgE
+
+[BudgE](https://docs.linuxserver.io/images/docker-budge/) is an open source 'budgeting with envelopes' personal finance app.
 
 ### Cloudflared
 

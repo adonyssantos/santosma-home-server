@@ -39,6 +39,26 @@ services:
           cpus: 0.25
           memory: 64M
 
+  budge:
+    image: lscr.io/linuxserver/budge:0.0.9
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=${TZ}
+    volumes:
+      - ./volumes/budge:/config
+    ports:
+      - 8200:80
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: 1.0
+          memory: 256M
+        reservations:
+          cpus: 0.5
+          memory: 128M
+
   cloudflared:
     image: cloudflare/cloudflared:2024.6.1
     command: tunnel --no-autoupdate run --token ${CLOUDFLARE_TUNNEL_TOKEN}
