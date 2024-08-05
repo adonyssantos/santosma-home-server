@@ -1,6 +1,7 @@
 services:
   freshrss:
     image: lscr.io/linuxserver/freshrss:1.24.1
+    container_name: freshrss
     environment:
       - PGID=${PGID}
       - PUID=${PUID}
@@ -21,6 +22,7 @@ services:
 
   vaultwarden:
     image: vaultwarden/server:1.31.0
+    container_name: vaultwarden
     environment:
       - INVITATIONS_ALLOWED=true
       - PGID=${PGID}
@@ -44,6 +46,7 @@ services:
 
   budge:
     image: lscr.io/linuxserver/budge:0.0.9
+    container_name: budge
     environment:
       - PGID=${PGID}
       - PUID=${PUID}
@@ -62,8 +65,76 @@ services:
           cpus: 0.5
           memory: 128M
 
+  portainer:
+    image: portainer/portainer-ce:2.20.3-alpine
+    container_name: portainer
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./volumes/portainer:/data
+    environment:
+      - PGID=${PGID}
+      - PUID=${PUID}
+      - TZ=${TZ}
+    ports:
+      - "9000:9000"
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: 0.50
+          memory: 128M
+        reservations:
+          cpus: 0.25
+          memory: 64M
+
+  uptime-kuma:
+    image: louislam/uptime-kuma:1
+    container_name: uptime-kuma
+    environment:
+      - PGID=${PGID}
+      - PUID=${PUID}
+      - TZ=${TZ}
+    ports:
+      - 9100:3001
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: 0.50
+          memory: 128M
+        reservations:
+          cpus: 0.25
+          memory: 64M
+
+  dockerproxy:
+    image: ghcr.io/tecnativa/docker-socket-proxy:0.2.0
+    container_name: dockerproxy
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      - CONTAINERS=1
+      - POST=0
+    restart: unless-stopped
+    healthcheck:
+      test: wget --spider http://localhost:2375/version || exit 1
+      interval: "29s"
+      timeout: "5s"
+      retries: 3
+      start_period: "21s"
+    deploy:
+      resources:
+        limits:
+          cpus: 0.50
+          memory: 128M
+        reservations:
+          cpus: 0.25
+          memory: 64M
+
   cloudflared:
     image: cloudflare/cloudflared:2024.6.1
+    container_name: cloudflared
     command: tunnel --no-autoupdate run --token ${CLOUDFLARE_TUNNEL_TOKEN}
     restart: unless-stopped
     deploy:
@@ -81,6 +152,7 @@ services:
       dockerfile: backups.dockerfile
       args:
         - MEGA_SESSION=${MEGA_SESSION}
+    container_name: backups
     environment:
       - PGID=${PGID}
       - PUID=${PUID}
