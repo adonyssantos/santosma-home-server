@@ -13,15 +13,12 @@ RUN wget https://mega.nz/linux/repo/xUbuntu_24.04/amd64/megacmd-xUbuntu_24.04_am
     apt install "$PWD/megacmd-xUbuntu_24.04_amd64.deb" -y
 
 # Login with mega-cmd
+# TODO: Limit the permissions to only the necessary ones
 ARG MEGA_SESSION
 RUN mega-login $MEGA_SESSION
 
-# Copy scripts and other necessary files
+# Copy scripts whit the necessary permissions
 COPY ./scripts /scripts
-COPY ./volumes /volumes
-COPY ./backups-encryption.key /backups-encryption.key
-
-# Add execution permissions to the scripts
 RUN chmod -R +x /scripts
 
 # Add cron jobs

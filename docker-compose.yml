@@ -82,6 +82,8 @@ services:
       - TZ=${TZ}
     volumes:
       - ./backups:/backups
+      - ./volumes:/volumes
+      - ./backups-encryption.key:/backups-encryption.key
     restart: unless-stopped
     deploy:
       resources:
