@@ -25,16 +25,16 @@ The following steps were taken to set up the server:
 
 The server is running the following services:
 
-| Service                     | Container Name | External Ports |
-| --------------------------- | -------------- | ----- |
-| [FreshRSS](#freshrss)       | freshrss       | 8000  |
-| [Vaultwarden](#vaultwarden) | vaultwarden    | 8100  |
-| [BudgE](#budge)             | budge          | 8200  |
-| [Portainer](#portainer)     | portainer      | 9000  |
-| [Uptime Kuma](#uptime-kuma) | uptime-kuma    | 9100  |
-| [Docker Socket Proxy](#docker-socket-proxy) | dockerproxy | N/A  |
-| [Cloudflared](#cloudflared) | cloudflared    | N/A   |
-| [Backups](#backups)         | backups        | N/A   |
+| Service                                     | Container Name | External Ports | Internal Ports |
+| ------------------------------------------- | -------------- | -------------- | -------------- |
+| [FreshRSS](#freshrss)                       | freshrss       | 8000           | 80             |
+| [Vaultwarden](#vaultwarden)                 | vaultwarden    | 8100           | 80             |
+| [BudgE](#budge)                             | budge          | 8200           | 80             |
+| [Portainer](#portainer)                     | portainer      | 9000           | 9000           |
+| [Uptime Kuma](#uptime-kuma)                 | uptime-kuma    | 9100           | 3001           |
+| [Docker Socket Proxy](#docker-socket-proxy) | dockerproxy    | N/A            | 2375           |
+| [Cloudflared](#cloudflared)                 | cloudflared    | N/A            | N/A            |
+| [Backups](#backups)                         | backups        | N/A            | N/A            |
 
 ### FreshRSS
 
