@@ -17,3 +17,7 @@ ansible-playbook -i hosts setup.yml
 
 - `hosts`: The inventory file with the hosts to configure.
 - `setup.yml`: The playbook file with the tasks to execute.
+
+## References
+
+- <https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html>
