@@ -98,6 +98,7 @@ services:
       - 9100:3001
     volumes:
       - /etc/localtime:/etc/localtime:ro
+      - ./volumes/uptime-kuma:/app/data
     restart: unless-stopped
     deploy:
       resources:
