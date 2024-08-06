@@ -52,11 +52,11 @@ The server is running the following services:
 
 [Vaultwarden](https://vaultwarden.github.io/docs/) is a free, open-source password manager that is compatible with Bitwarden. It is a great way to store and manage your passwords securely.
 
-## BudgE
+### BudgE
 
 [BudgE](https://docs.linuxserver.io/images/docker-budge/) is an open source 'budgeting with envelopes' personal finance app.
 
-## Portainer
+### Portainer
 
 [Portainer](https://www.portainer.io/) is a lightweight management UI that allows you to easily manage your Docker environments.
 
