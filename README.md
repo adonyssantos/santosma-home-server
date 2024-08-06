@@ -64,7 +64,7 @@ The server is running the following services:
 
 [Uptime Kuma](https://github.com/louislam/uptime-kuma) is a self-hosted monitoring tool that checks the uptime of your websites and services.
 
-## Docker Socket Proxy
+### Docker Socket Proxy
 
 [Docker Socket Proxy](https://github.com/Tecnativa/docker-socket-proxy) is a tool that allows you to securely access the Docker API from a remote machine. It is used by Portainer to access the Docker API on the host machine.
 
@@ -72,6 +72,6 @@ The server is running the following services:
 
 [Cloudflared](https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/install-and-setup/installation) is a tool that allows you to tunnel traffic through Cloudflare's network. Is used to access to the local server from the internet.
 
-## Backups
+### Backups
 
 This service is my own implementation to backup the data from all others services volumes. The backups are encrypted using the `backups-encryption.key` file and uploaded to Mega using the `mega-cmd` tool. Also, this service remove old backups from the local server to save space.
