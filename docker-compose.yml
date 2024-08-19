@@ -8,6 +8,50 @@ services:
       - TZ=${TZ}
     volumes:
       - ./volumes/freshrss:/config
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: 0.50
+          memory: 128M
+        reservations:
+          cpus: 0.25
+          memory: 64M
+
+  rss-bridge:
+    image: rssbridge/rss-bridge:sha-c0e37bc
+    container_name: rss-bridge
+    volumes:
+      - ./volumes/rss-bridge:/config
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: 0.50
+          memory: 128M
+        reservations:
+          cpus: 0.25
+          memory: 64M
+
+  instagram-feed-generator:
+    build: 
+      context: ./projects/instagram-feed-generator
+    container_name: instagram-feed-generator
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: 0.50
+          memory: 128M
+        reservations:
+          cpus: 0.25
+          memory: 64M
+
+  rss-nginx:
+    image: nginx:stable-alpine3.20
+    container_name: rss-nginx
+    volumes:
+      - ./nginx/rss.conf:/etc/nginx/nginx.conf:ro
     ports:
       - 8000:80
     restart: unless-stopped

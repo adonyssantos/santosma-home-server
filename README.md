@@ -33,20 +33,41 @@ On the `scripts` folder there are some scripts to help with the management of th
 
 The server is running the following services:
 
-| Service                                     | Container Name | External Ports | Internal Ports |
-| ------------------------------------------- | -------------- | -------------- | -------------- |
-| [FreshRSS](#freshrss)                       | freshrss       | 8000           | 80             |
-| [Vaultwarden](#vaultwarden)                 | vaultwarden    | 8100           | 80             |
-| [BudgE](#budge)                             | budge          | 8200           | 80             |
-| [Portainer](#portainer)                     | portainer      | 9000           | 9000           |
-| [Uptime Kuma](#uptime-kuma)                 | uptime-kuma    | 9100           | 3001           |
-| [Docker Socket Proxy](#docker-socket-proxy) | dockerproxy    | N/A            | 2375           |
-| [Cloudflared](#cloudflared)                 | cloudflared    | N/A            | N/A            |
-| [Backups](#backups)                         | backups        | N/A            | N/A            |
+| Service                                               | Container Name           | External Ports | Internal Ports |
+| ----------------------------------------------------- | ------------------------ | -------------- | -------------- |
+| [FreshRSS](#freshrss)                                 | freshrss                 | N/A            | 80             |
+| [RSS Bridge](#rss-bridge)                             | rssbridge                | N/A            | 80             |
+| [instagram-feed-generator](#instagram-feed-generator) | instagram-feed-generator | N/A            | 80             |
+| [rss-nginx](#rss-nginx)                               | freshrss-nginx           | 8000           | 80             |
+| [Vaultwarden](#vaultwarden)                           | vaultwarden              | 8100           | 80             |
+| [BudgE](#budge)                                       | budge                    | 8200           | 80             |
+| [Portainer](#portainer)                               | portainer                | 9000           | 9000           |
+| [Uptime Kuma](#uptime-kuma)                           | uptime-kuma              | 9100           | 3001           |
+| [Docker Socket Proxy](#docker-socket-proxy)           | dockerproxy              | N/A            | 2375           |
+| [Cloudflared](#cloudflared)                           | cloudflared              | N/A            | N/A            |
+| [Backups](#backups)                                   | backups                  | N/A            | N/A            |
 
 ### FreshRSS
 
 [FreshRSS](https://freshrss.org/) is a free, self-hosted RSS feed reader. It is a great way to keep up with your favorite websites and blogs.
+
+### RSS Bridge
+
+[RSS Bridge](https://github.com/RSS-Bridge/rss-bridge) is a PHP project that allows you to generate RSS feeds for websites that do not have them. It is a great way to keep up with websites that do not offer RSS feeds.
+
+### instagram-feed-generator
+
+[instagram-feed-generator](./projects/instagram-feed-generator/README.md) is my own implementation to generate an RSS feed from an Instagram account. It is a great way to keep up with your favorite Instagram accounts without having to use the Instagram app.
+
+## rss-nginx
+
+An [nginx](https://www.nginx.com/) server that serves all the services related to RSS feeds. It is used to serve the FreshRSS and RSS Bridge services.
+
+This is serving the following services:
+
+- [FreshRSS](#freshrss): `http://rss-nginx:80/`
+- [RSS Bridge](#rss-bridge): `http://rss-nginx:80/rss-bridge`
+- [instagram-feed-generator](#instagram-feed-generator): `http://rss-nginx:80/instagram-feed-generator`
 
 ### Vaultwarden
 
